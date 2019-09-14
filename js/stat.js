@@ -77,7 +77,7 @@ window.renderStatistics = function (ctx, players, times) {
     if (playerName === 'Вы') {
       return 'rgba(255, 0, 0, 1)';
     } else {
-      return 'rgba(0, 0, 255, ' + (Math.random() + 0.1).toFixed(1) + ')';
+      return 'hsl(235, 97%, 27%,  ' + Math.random() + ')';
     }
   };
 
