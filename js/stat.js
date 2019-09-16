@@ -44,11 +44,27 @@ window.renderStatistics = function (ctx, players, times) {
 
   var maxTime = getMaxElement(times);
 
-  for (var i = 0; i < times.length; i++) {
-    ctx.fillStyle = getPlayerColor(players[i]);
-    ctx.fillText(players[i], CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * i, BAR_Y);
-    ctx.fillRect(CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * i, BAR_Y - CLOUD_Y - GAP, BAR_WIDTH, (BAR_HEIGHT * times[i]) / maxTime);
-    ctx.fillText(Math.round(times[i]), CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * i, CLOUD_Y + BAR_GAP + GAP + CLOUD_Y);
-  }
+  var drawPlayerResults = function () {
+    for (var i = 0; i < times.length; i++) {
+      ctx.fillStyle = getPlayerColor(players[i]);
+      ctx.fillText(players[i], CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * i, BAR_Y);
+      ctx.fillRect(CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * i, BAR_Y - CLOUD_Y - GAP, BAR_WIDTH, (BAR_HEIGHT * times[i]) / maxTime);
+      ctx.fillText(Math.round(times[i]), CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * i, CLOUD_Y + BAR_GAP + GAP + CLOUD_Y);
+    }
+  };
+  drawPlayerResults();
 };
 
+/*
+  for (var i = 0; i < times.length; i++) {
+    ctx.fillStyle = getPlayerColor(players[i]);
+    var drawPlayerResults = function (times, players, maxTime, index) {
+      ctx.fillText(player[i], CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * index[i], BAR_Y);
+      ctx.fillRect(CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * index[i], BAR_Y - CLOUD_Y - GAP, BAR_WIDTH, (BAR_HEIGHT * time[i]) / maxTime);
+      ctx.fillText(Math.round(time[i]), CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * index[i], CLOUD_Y + BAR_GAP + GAP + CLOUD_Y);
+    };
+  };
+  ctx.fillText(drawPlayerResults(players[i], times[i]));
+  ctx.fillRect(drawPlayerResults(times[i], index[i]));
+};
+*/
