@@ -13,37 +13,37 @@ var wizards = [
   {
     name: 'Иван',
     surName: 'да Марья',
-    coatColor: 'rgb (101, 137, 164)',
+    coatColor: 'rgb(101, 137, 164)',
     eyesColor: 'black'
   },
   {
     name: 'Хуан Себастьян',
     surName: 'Верон',
-    coatColor: 'rgb (241, 43, 107)',
+    coatColor: 'rgb(241, 43, 107)',
     eyesColor: 'red'
   },
   {
     name: 'Мария',
     surName: 'Мирабелла',
-    coatColor: 'rgb (146, 100, 161)',
+    coatColor: 'rgb(146, 100, 161)',
     eyesColor: ''
   },
   {
     name: 'Мария',
     surName: 'Вальц',
-    coatColor: 'rgb (56, 159, 117)',
+    coatColor: 'rgb(56, 159, 117)',
     eyesColor: 'blue'
   },
   {
     name: 'Мария',
     surName: 'Онопко',
-    coatColor: 'rgb (215, 210, 55)',
+    coatColor: 'rgb(215, 210, 55)',
     eyesColor: 'yellow'
   },
   {
     name: 'Юлия',
     surName: 'Топольницкая',
-    coatColor: 'rgb (0, 0, 0)',
+    coatColor: 'rgb(0, 0, 0)',
     eyesColor: 'green'
   },
   {
@@ -105,6 +105,8 @@ var coatColorResults = wizards.map(function (a) {
   }
   return a.coatColor;
 });
+
+console.log(coatColorResults);
 
 var eyesColorResults = wizards.map(function (a) {
   for (var k = wizards.length - 1; k > 0; k--) {
