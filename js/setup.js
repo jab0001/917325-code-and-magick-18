@@ -56,6 +56,12 @@ similarListElement.appendChild(fragment);
 
 setup.querySelector('.setup-similar').classList.remove('hidden');
 
+userNameInput.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    evt.stopPropagation();
+  }
+});
+
 var onPopupEscPress = function (evt) {
   if (evt.keyCode === ESC_KEYCODE) {
     closePopup();
@@ -64,12 +70,12 @@ var onPopupEscPress = function (evt) {
 
 var openPopup = function () {
   setup.classList.remove('hidden');
-  document.addEventListener('keydown', onPopupEscPress);
+  document.addEventListener('keydown', onPopupEscPress, false);
 };
 
 var closePopup = function () {
   setup.classList.add('hidden');
-  document.addEventListener('keydown', onPopupEscPress);
+  document.removeEventListener('keydown', onPopupEscPress, false);
 };
 
 setupOpen.addEventListener('click', function (evt) {
@@ -96,8 +102,12 @@ setupClose.addEventListener('keydown', function (evt) {
 
 userNameInput.addEventListener('input', function (evt) {
   var target = evt.target;
-  if (target.value.length < 2) {
+  if (target.value.length === 0) {
+    target.setCustomValidity('это поле должно содержать символы');
+  } else if (target.value.length < 2) {
     target.setCustomValidity('Имя должно состоять минимум из 2-х символов');
+  } else if (target.value.length > 25) {
+    target.setCustomValidity('Имя должно состоять максимум из 25 символов');
   } else {
     target.setCustomValidity('');
   }
@@ -132,4 +142,3 @@ setupWizardFireballClicker.addEventListener('click', function (evt) {
   setupWizardFireball.style.background = fireball;
   inputWizardFireball.value = fireball;
 });
-
