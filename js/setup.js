@@ -55,7 +55,7 @@ for (var j = 0; j < wizards.length; j++) {
 similarListElement.appendChild(fragment);
 
 setup.querySelector('.setup-similar').classList.remove('hidden');
-
+// popup
 userNameInput.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ESC_KEYCODE) {
     evt.stopPropagation();
@@ -76,6 +76,8 @@ var openPopup = function () {
 var closePopup = function () {
   setup.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress, false);
+  setup.style.top = '';
+  setup.style.left = '';
 };
 
 setupOpen.addEventListener('click', function (evt) {
@@ -112,7 +114,7 @@ userNameInput.addEventListener('input', function (evt) {
     target.setCustomValidity('');
   }
 });
-
+// setup-wizard
 var setupWizard = document.querySelector('.setup-wizard');
 var setupWizardCoat = setupWizard.querySelector('.wizard-coat');
 var inputWizardCoat = document.querySelector('.setup-wizard-appearance input[name="coat-color"]');
@@ -141,4 +143,55 @@ setupWizardFireballClicker.addEventListener('click', function (evt) {
   var fireball = getRandomArrayElement(FIREBALL_COLORS);
   setupWizardFireball.style.background = fireball;
   inputWizardFireball.value = fireball;
+});
+// drag
+var dialogHandler = setup.querySelector('.upload');
+
+dialogHandler.addEventListener('mousedown', function (evt) {
+  evt.preventDefault();
+
+  var startCoords = {
+    x: evt.clientX,
+    y: evt.clientY
+  };
+
+  var dragged = false;
+
+  var onMouseMove = function (moveEvt) {
+    moveEvt.preventDefault();
+    dragged = true;
+
+    var shift = {
+      x: startCoords.x - moveEvt.clientX,
+      y: startCoords.y - moveEvt.clientY
+    };
+
+    startCoords = {
+      x: moveEvt.clientX,
+      y: moveEvt.clientY
+    };
+
+    setup.style.top = (setup.offsetTop - shift.y) + 'px';
+    setup.style.left = (setup.offsetLeft - shift.x) + 'px';
+
+  };
+
+  var onMouseUp = function (upEvt) {
+    upEvt.preventDefault();
+
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+
+    if (dragged) {
+      var onClickPreventDefault = function (remove) {
+        remove.preventDefault();
+        dialogHandler.removeEventListener('click', onClickPreventDefault);
+      };
+      dialogHandler.addEventListener('click', onClickPreventDefault);
+    }
+
+  };
+
+  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('mouseup', onMouseUp);
 });
