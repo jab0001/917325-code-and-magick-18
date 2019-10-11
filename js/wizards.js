@@ -30,10 +30,10 @@
     wizards.push(getObjWizard(NAMES, SUR_NAMES, window.color.COAT, window.color.EYES));
   }
 
-  var renderWizard = function (mageFromServ, mageFromMock) {
+  var renderWizard = function (mageFromServ) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
 
-    wizardElement.querySelector('.setup-similar-label').textContent = mageFromServ.name + ' ' + mageFromMock.surName;
+    wizardElement.querySelector('.setup-similar-label').textContent = mageFromServ.name;
     wizardElement.querySelector('.wizard-coat').style.fill = mageFromServ.colorCoat;
     wizardElement.querySelector('.wizard-eyes').style.fill = mageFromServ.colorEyes;
 
@@ -56,7 +56,7 @@
 
   var onSuccess = function (data) {
     for (var j = 0; j < WIZARDS_COUNT; j++) {
-      fragment.appendChild(renderWizard(data[j], wizards[j]));
+      fragment.appendChild(renderWizard(data[j]));
     }
     similarListElement.appendChild(fragment);
   };
