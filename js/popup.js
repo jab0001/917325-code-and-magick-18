@@ -4,6 +4,7 @@
   var userNameInput = window.setup.querySelector('.setup-user-name');
   var setupClose = window.setup.querySelector('.setup-close');
   var setupOpen = document.querySelector('.setup-open');
+  var setupForm = window.setup.querySelector('.setup-wizard-form');
   var keycode = {
     ENTER: 13,
     ESC: 27
@@ -66,5 +67,12 @@
     } else {
       target.setCustomValidity('');
     }
+  });
+
+  setupForm.addEventListener('submit', function (evt) {
+    window.save(new FormData(setupForm), function () {
+      window.setup.classList.add('hidden');
+    });
+    evt.preventDefault();
   });
 })();
