@@ -1,6 +1,10 @@
 'use strict';
 
 (function () {
+  var wizard = {
+    onEyesChange: function () { },
+    onCoatChange: function () { }
+  };
 
   var setupWizard = document.querySelector('.setup-wizard');
   var setupWizardCoat = setupWizard.querySelector('.wizard-coat');
@@ -16,6 +20,7 @@
     var coat = window.getRandomArrayElement(window.color.COAT);
     setupWizardCoat.style.fill = coat;
     inputWizardCoat.value = coat;
+    wizard.onCoatChange(coat);
   });
 
   setupWizardEyes.addEventListener('click', function (evt) {
@@ -23,6 +28,7 @@
     var eyes = window.getRandomArrayElement(window.color.EYES);
     setupWizardEyes.style.fill = eyes;
     inputWizardEyes.value = eyes;
+    wizard.onEyesChange(eyes);
   });
 
   setupWizardFireballClicker.addEventListener('click', function (evt) {
@@ -31,4 +37,6 @@
     setupWizardFireball.style.background = fireball;
     inputWizardFireball.value = fireball;
   });
+  wizard = window.wizard;
+  return wizard;
 })();
