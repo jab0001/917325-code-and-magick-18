@@ -7,6 +7,6 @@
     EYES: ['black', 'red', 'blue', 'yellow', 'green'],
     FIREBALL: ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848']
   };
-
+  window.FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 })();
 
